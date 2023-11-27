@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -9,7 +8,7 @@ const roboto = Roboto({
   weight: "400",
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "DRIVERAVE",
   description: "Аренда жилья и автомобилей от владельцев",
 };
