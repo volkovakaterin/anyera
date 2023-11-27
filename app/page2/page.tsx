@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Вторая страница",
 };
 
-export default function Home() {
+export default function Page2() {
   const page = (
     <main className={styles.main}>
       <AnimateText>
