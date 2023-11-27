@@ -29,7 +29,7 @@ export default function Page2() {
         </h1>
       </AnimateText>
       <SearchPanel />
-      <Link href={"/"} className={styles.link_btn}>
+      <Link href={"./"} className={styles.link_btn}>
         Home
       </Link>
     </main>
