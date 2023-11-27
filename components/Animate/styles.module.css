@@ -1,0 +1,10 @@
+.container_motion {
+  flex: 1 1 auto;
+  height: 800px;
+}
+
+@media (max-width: 768px) {
+  .container_motion {
+    height: 950px;
+  }
+}

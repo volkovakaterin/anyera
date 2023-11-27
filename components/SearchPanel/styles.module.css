@@ -1,0 +1,243 @@
+.container {
+  position: relative;
+}
+
+.container_form {
+  position: relative;
+  z-index: 1;
+
+  height: 70px;
+  width: 100%;
+  padding: 5px 5px 5px 40px;
+  margin-top: 60px;
+
+  border-radius: 50px;
+  background: #fff;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+.form_search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.field_label {
+  display: flex;
+  flex-direction: column;
+
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+
+  color: #6b6b6b;
+}
+
+.label_arrival,
+.label_departure {
+  min-width: 196px;
+}
+
+.field_label:not(:nth-child(4)) {
+  border-right: solid 1px #d9d9d9;
+}
+
+.field,
+.field::placeholder {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 400;
+
+  color: #000;
+  border: none;
+  outline: none;
+}
+
+.input_btn {
+  display: none;
+}
+
+.btn_submit {
+  width: 60.5px;
+  height: 60.5px;
+
+  background: url("../../public/svg/search.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+
+  cursor: pointer;
+}
+
+.submit_title,
+.submit_icon {
+  display: none;
+}
+
+.container_calendar {
+  position: absolute;
+  top: 0px;
+  z-index: 0;
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 100px 0 60px;
+
+  background: #fff;
+  border-radius: 20px;
+}
+
+@media (max-width: 1440px) {
+  .container_form {
+    margin-top: 52px;
+    padding: 5px 5px 5px 20px;
+  }
+
+  .field_label,
+  .field,
+  .field::placeholder {
+    font-size: 12px;
+  }
+
+  .label_arrival,
+  .label_departure {
+    min-width: 147px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container_form {
+    height: auto;
+    margin-top: 60px;
+    padding: 30px 15px;
+
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .form_search {
+    flex-direction: column;
+  }
+
+  .field_label {
+    width: 100%;
+    margin-top: 15px;
+
+    font-size: 10px;
+
+    color: #000;
+    border: none;
+  }
+
+  .field_title {
+    padding-left: 20px;
+  }
+
+  .form_search .field_label {
+    border: none;
+  }
+
+  .field,
+  .field::placeholder {
+    color: #000;
+  }
+
+  .field {
+    height: 44px;
+    margin-top: 5px;
+    padding: 0 20px;
+
+    border-radius: 100px;
+    border: 1px solid #ddd;
+    background: #fff;
+  }
+
+  .container_label {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .label_arrival,
+  .label_departure {
+    width: 50%;
+  }
+
+  .field_arrival {
+    display: flex;
+    align-items: center;
+
+    border-radius: 100px 0 0 100px;
+  }
+
+  .field_departure {
+    display: flex;
+    align-items: center;
+
+    border-radius: 0 100px 100px 0;
+    border-left: none;
+  }
+
+  .label_guests {
+    position: relative;
+  }
+
+  .input_btn {
+    position: absolute;
+    top: calc(50% + 8px);
+    right: 20px;
+    transform: translate(0, -50%);
+
+    width: 12px;
+    height: 12px;
+    display: block;
+
+    background: url(../../public/svg/arrow.svg) 0 0 no-repeat;
+    cursor: pointer;
+  }
+
+  .btn_submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 44px;
+    margin-top: 30px;
+
+    background: #e83801;
+    border-radius: 100px;
+  }
+
+  .submit_icon {
+    display: block;
+    width: 19px;
+    height: 19px;
+
+    background: url("../../public/svg/loupe.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+  }
+
+  .submit_title {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.14px;
+
+    color: #fff;
+  }
+
+  .container_calendar {
+    z-index: 2;
+
+    padding-top: 60px;
+  }
+}
