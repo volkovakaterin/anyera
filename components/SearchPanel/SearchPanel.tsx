@@ -5,7 +5,8 @@ import { useState, useRef, useEffect } from "react";
 import "react-calendar/dist/Calendar.css";
 import { motion, AnimatePresence } from "framer-motion";
 import Select from "../Select/Select";
-import Calendar from "react-calendar";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/material_orange.css";
 
 export enum FormField {
   Address = "address",
@@ -23,19 +24,23 @@ interface Form {
 
 export default function SearchPanel() {
   const [visible, setVisible] = useState(false);
-  const [calendarValue, setCalendarValue] = useState("");
   const calendarRef = useRef<HTMLDivElement | null>(null);
   const arrivalRef = useRef<HTMLInputElement | null>(null);
   const departureRef = useRef<HTMLInputElement | null>(null);
-  const [arrivalDate, setArrivalDate] = useState<Date | null>(new Date());
-  const [departureDate, setDepartureDate] = useState<Date | null>(new Date());
   const [screenWidth, setScreenWidth] = useState<number | undefined>();
+  const [showMonths, setShowMonths] = useState(2);
   const [formData, setFormData] = useState<Form>({
     address: "",
     arrival: "Когда",
     departure: "Когда",
     guests: 2,
   });
+
+  const arrivalDate = new Date();
+  const currentDate = new Date();
+  const nextDay: Date = new Date(currentDate);
+  nextDay.setDate(currentDate.getDate() + 1);
+  const departureDate = nextDay;
 
   const handleSetForm = (value: string | number, field: FormField) => {
     setFormData((prevState) => ({ ...prevState, [field]: value }));
@@ -64,11 +69,6 @@ export default function SearchPanel() {
   };
 
   const handlerCalendarValue = (value: any) => {
-    if (value) {
-      value[0] ? setArrivalDate(value[0]) : false;
-      value[1] ? setDepartureDate(value[1]) : false;
-    }
-
     value.map((val: Date, index: number) => {
       let date: string;
       let field;
@@ -83,10 +83,15 @@ export default function SearchPanel() {
   };
 
   useEffect(() => {
-    const currentDate = new Date();
-    const nextDay: Date = new Date(currentDate);
-    nextDay.setDate(currentDate.getDate() + 1);
-    setDepartureDate(nextDay);
+    if (screenWidth && screenWidth < 670) {
+      setShowMonths(1);
+    }
+
+    const flatpickrInput =
+      document.querySelector<HTMLInputElement>(".flatpickr-input");
+    if (flatpickrInput) {
+      flatpickrInput.style.display = "none";
+    }
 
     const closeCalendar = () => {
       if (!visible) return;
@@ -109,7 +114,7 @@ export default function SearchPanel() {
     closeCalendar();
     setScreenWidth(window.screen.width);
     resizeScreen();
-  }, [calendarValue, visible]);
+  }, [screenWidth, visible]);
 
   const inputsDate = (
     <>
@@ -172,15 +177,16 @@ export default function SearchPanel() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <Calendar
+            <Flatpickr
               onChange={handlerCalendarValue}
-              value={[arrivalDate, departureDate]}
-              selectRange
-              minDate={new Date()}
-              returnValue="range"
-              goToRangeStartOnSelect={false}
-              allowPartialRange
-              showDoubleView
+              options={{
+                mode: "range",
+                defaultDate: [arrivalDate, departureDate],
+                inline: true,
+                showMonths: showMonths,
+                dateFormat: "Y-m-d",
+                enableTime: false,
+              }}
             />
           </motion.div>
         )}
