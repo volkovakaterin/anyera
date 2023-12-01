@@ -44,6 +44,10 @@
   border-right: solid 1px #d9d9d9;
 }
 
+.input_address {
+  background: transparent;
+}
+
 .field,
 .field::placeholder {
   font-family: var(--font-mono);
